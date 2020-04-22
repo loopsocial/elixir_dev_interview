@@ -1,14 +1,12 @@
 
-# Firework Elixir Test: ExScheduler
-
-Cron-like job scheduler in few lines of elixir code.
-
-Inspired in [this answer by José Valim](https://stackoverflow.com/a/32097971).
-
-Added cron syntax, with extended support for seconds.
-
-## Interview Assignment
+#### Firework Interview Assignment
 Write tests to assert `ExScheduler.Worker` periodic behaviour in `test/ex_scheduler/worker_test.exs`.
+
+# ExScheduler
+
+Cron-like job scheduler in few lines of elixir code.  
+Inspired in [this answer by José Valim](https://stackoverflow.com/a/32097971).  
+Added cron syntax, with extended support for seconds.
 
 ## Installation
 
@@ -20,18 +18,14 @@ def deps do
 end
 ```
 
-## Configuration
-
-Cron expressions are evaluated over UTC time.
-
-Add ExScheduler.Worker to `MyApp.Application.start/2`:
+Add ExScheduler.Worker to your supervision tree:
 ```elixir
   children = [
     {ExScheduler.Worker, jobs}
   ]
 ```
 
-And add the configuration:
+And the jobs configuration:
 ```elixir
   defp jobs() do
     [
@@ -41,12 +35,10 @@ And add the configuration:
   end
 ```
 
+If using Phoenix Framework, you should pull this configuration from config.exs.
 
+#### Important:
 - When the function is omitted, `perform/0` function is called.
 - When `args` are ommited, the function is called with no attributes.
+- Cron expressions are evaluated over UTC time.
 
-## TODO
-- Worker documentation
-- https://hex.pm/docs/publish
-- Documentation can be generated with [ExDoc](https://github.com/elixir-lang/ex_doc)
-  and published on [HexDocs](https://hexdocs.pm)
